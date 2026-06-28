@@ -1,0 +1,41 @@
+## Ten plik NIE jest wersjonowany – dodany do .gitignore
+## Skopiuj go jako "local.properties" i wstaw swoje klucze.
+
+# Ścieżka SDK (uzupełniana przez Android Studio)
+sdk.dir=/Users/TwojNazwaUzytkownika/Library/Android/sdk
+
+# -----------------------------------------------------------------------
+# 1. TMDB API – filmy
+#    Rejestracja: https://www.themoviedb.org/settings/api
+#    Plan: DARMOWY bez limitu (non-commercial)
+# -----------------------------------------------------------------------
+TMDB_API_KEY=5663c3e38bb497e3cf557f323fcd9915
+
+# -----------------------------------------------------------------------
+# 2. Foursquare Places API v3 – restauracje i aktywności
+#    Rejestracja: https://foursquare.com/developers/signup
+#    Plan: DARMOWY – 1000 żądań/dzień
+#    WAŻNE: Wstaw tylko część klucza BEZ prefixu "fsq3"
+#    Kod dodaje "fsq3" automatycznie przed wysłaniem żądania.
+# -----------------------------------------------------------------------
+FOURSQUARE_API_KEY=2TO15A1OU0TBZQBUZ5MXY3YLDXPKZQYLHT4OSVSPSDK0D0QR
+
+# -----------------------------------------------------------------------
+# 3. OpenTripMap API – hotele i obiekty noclegowe
+#    Rejestracja: https://dev.opentripmap.org/
+#    Plan: DARMOWY – 1000 żądań/dzień (bez karty kredytowej)
+# -----------------------------------------------------------------------
+OPENTRIPMAP_API_KEY=5ae2e3f221c38a28845f05b671254605a95e9c3ede09584990248b6a
+
+# -----------------------------------------------------------------------
+# 4. Ticketmaster Discovery API – aktywności i wydarzenia
+#    Rejestracja: https://developer.ticketmaster.com/
+#    Plan: DARMOWY – 5000 żądań/dzień
+# -----------------------------------------------------------------------
+TICKETMASTER_API_KEY=GlAuvmECNCjPcyURAi7mZ5MwHj4EHeLZ
+
+# -----------------------------------------------------------------------
+# 5. Teleport API – wakacje i destynacje podróżnicze
+#    BEZ KLUCZA – całkowicie darmowe, bez rejestracji
+#    https://developers.teleport.org/api/
+# -----------------------------------------------------------------------

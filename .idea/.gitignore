@@ -1,0 +1,34 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+*.iml
+.gradle
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+**/build/
+/captures
+.externalNativeBuild
+.cxx
+
+# Sekrety i konfiguracja lokalna - NIE wersjonować
+local.properties
+secrets.properties
+keystore.properties
+.env
+
+# Firebase - zawiera identyfikatory projektu
+**/google-services.json
+
+# Klucze podpisywania
+*.jks
+*.keystore
+
+# Artefakty buildu
+*.apk
+*.aab

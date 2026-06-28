@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Motyw bazowy – Jetpack Compose zarządza motywem przez GroupSwipeTheme -->
+    <style name="Theme.GroupSwipe" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- Splash screen -->
+    <style name="Theme.GroupSwipe.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#1E6B4A</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.GroupSwipe</item>
+    </style>
+</resources>

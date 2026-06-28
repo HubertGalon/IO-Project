@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GroupSwipe</string>
+
+    <!-- Auth -->
+    <string name="login_title">Zaloguj się</string>
+    <string name="register_title">Utwórz konto</string>
+    <string name="email_hint">Adres email</string>
+    <string name="password_hint">Hasło</string>
+    <string name="display_name_hint">Twoja nazwa</string>
+    <string name="login_button">Zaloguj się</string>
+    <string name="register_button">Zarejestruj się</string>
+    <string name="no_account">Nie masz konta? Zarejestruj się</string>
+    <string name="have_account">Masz już konto? Zaloguj się</string>
+
+    <!-- Home -->
+    <string name="active_sessions">Aktywne sesje</string>
+    <string name="no_sessions">Brak aktywnych sesji</string>
+    <string name="create_session">Utwórz sesję</string>
+    <string name="join_session">Dołącz do sesji</string>
+
+    <!-- Session -->
+    <string name="session_title_hint">Tytuł sesji</string>
+    <string name="select_category">Wybierz kategorię</string>
+    <string name="invite_friends">Zaproś znajomych</string>
+    <string name="invite_code">Kod zaproszenia</string>
+    <string name="start_voting">Rozpocznij głosowanie</string>
+    <string name="vote_yes">Tak</string>
+    <string name="vote_no">Nie</string>
+
+    <!-- Results -->
+    <string name="results_title">Wyniki głosowania</string>
+    <string name="winner">Zwycięzca</string>
+    <string name="yes_votes">głosów TAK</string>
+
+    <!-- Friends -->
+    <string name="friends_title">Znajomi</string>
+    <string name="search_users">Szukaj użytkowników</string>
+    <string name="send_request">Wyślij zaproszenie</string>
+    <string name="accept">Akceptuj</string>
+    <string name="reject">Odrzuć</string>
+
+    <!-- History -->
+    <string name="history_title">Historia sesji</string>
+    <string name="no_history">Brak historii</string>
+
+    <!-- Errors -->
+    <string name="network_error">Błąd sieci – sprawdź połączenie z internetem</string>
+    <string name="unknown_error">Nieznany błąd. Spróbuj ponownie</string>
+</resources>

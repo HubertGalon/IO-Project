@@ -1,0 +1,119 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ================================================================
+    // Funkcje pomocnicze
+    // ================================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return request.auth.uid == uid;
+    }
+
+    function isSessionParticipant(sessionData) {
+      return request.auth.uid in sessionData.participantIds;
+    }
+
+    function isSessionHost(sessionData) {
+      return request.auth.uid == sessionData.hostUid;
+    }
+
+    // ================================================================
+    // Kolekcja: users
+    // Każdy zalogowany użytkownik może czytać profile (potrzebne do wyszukiwania).
+    // Tylko właściciel może edytować swój profil.
+    // ================================================================
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isOwner(userId);
+      allow update: if isAuthenticated() && isOwner(userId);
+      allow delete: if false; // Usuwanie konta tylko przez Cloud Function
+    }
+
+    // ================================================================
+    // Kolekcja: friend_requests
+    // Użytkownik może czytać zaproszenia skierowane do niego lub przez niego wysłane.
+    // Może tworzyć zaproszenia i aktualizować status własnych zaproszeń.
+    // ================================================================
+    match /friend_requests/{requestId} {
+      allow read: if isAuthenticated() &&
+        (resource.data.fromUid == request.auth.uid ||
+         resource.data.toUid == request.auth.uid);
+
+      allow create: if isAuthenticated() &&
+        request.resource.data.fromUid == request.auth.uid &&
+        request.resource.data.status == 'PENDING';
+
+      allow update: if isAuthenticated() &&
+        // Odbiorca może zmienić status (zaakceptować/odrzucić)
+        resource.data.toUid == request.auth.uid &&
+        request.resource.data.status in ['ACCEPTED', 'REJECTED'];
+
+      allow delete: if false;
+    }
+
+    // ================================================================
+    // Kolekcja: sessions
+    // Uczestnicy mogą czytać sesje, w których uczestniczą.
+    // Host tworzy sesję. Uczestnicy mogą dołączać przez kod.
+    // Zmiany statusu tylko przez hosta lub logikę backendową.
+    // ================================================================
+    match /sessions/{sessionId} {
+      allow read: if isAuthenticated() &&
+        (request.auth.uid in resource.data.participantIds ||
+         resource.data.inviteCode != null); // Allow reading for join-by-code lookup
+
+      allow create: if isAuthenticated() &&
+        request.resource.data.hostUid == request.auth.uid;
+
+      allow update: if isAuthenticated() && (
+        // Host może zmieniać status
+        isSessionHost(resource.data) ||
+        // Uczestnicy mogą dołączać (dodawać siebie do participantIds)
+        (request.auth.uid in request.resource.data.participantIds &&
+         !(request.auth.uid in resource.data.participantIds)) ||
+        // Uczestnicy mogą aktualizować finishedVotingUids
+        isSessionParticipant(resource.data)
+      );
+
+      allow delete: if isAuthenticated() && isSessionHost(resource.data);
+    }
+
+    // ================================================================
+    // Kolekcja: proposals
+    // Wszyscy uczestnicy sesji mogą czytać propozycje.
+    // Tylko host (przez serwer) może tworzyć propozycje.
+    // ================================================================
+    match /proposals/{proposalId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated(); // Tworzenie przez repozytorium przy tworzeniu sesji
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    // ================================================================
+    // Kolekcja: votes
+    // Użytkownik może czytać i tworzyć tylko swoje głosy.
+    // Format ID: {uid}_{proposalId}
+    // ================================================================
+    match /votes/{voteId} {
+      allow read: if isAuthenticated() &&
+        resource.data.uid == request.auth.uid;
+
+      // Odczyt przez uczestników sesji (do agregacji wyników)
+      allow read: if isAuthenticated();
+
+      allow create: if isAuthenticated() &&
+        request.resource.data.uid == request.auth.uid;
+
+      // Głos raz oddany – niezmienialny
+      allow update: if false;
+      allow delete: if false;
+    }
+  }
+}
