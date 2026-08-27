@@ -9,7 +9,7 @@
 ## 1. Wprowadzenie
 
 ### 1.1. Cel dokumentu
-Dokument opisuje wymagania stawiane aplikacji mobilnej GroupSwipe. Stanowi punkt odniesienia dla zespołu projektowego, testerów oraz osób oceniających projekt. Wymagania odtworzono na podstawie analizy kodu źródłowego (warstwy domenowej, repozytoriów, modeli widoku oraz manifestu Androida).
+Dokument opisuje wymagania stawiane aplikacji mobilnej GroupSwipe. Stanowi punkt odniesienia dla zespołu projektowego, testerów oraz osób oceniających projekt.
 
 ### 1.2. Opis produktu
 GroupSwipe to aplikacja na Androida wspierająca grupowe podejmowanie decyzji w stylu „przesuń, aby zagłosować” (swipe). Grupa znajomych tworzy wspólną sesję w wybranej kategorii (filmy, restauracje, hotele, wakacje, aktywności), a każdy uczestnik ocenia kolejne propozycje gestem TAK/NIE. Po zakończeniu głosowania aplikacja agreguje głosy i wyłania zwycięzcę; remis jest rozstrzygany losowo („koło fortuny”). Propozycje pochodzą z zewnętrznych, w większości darmowych API.
